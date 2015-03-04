@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="gate.Gate"/>
+<fullyQualifiedTypeName name="gate.util.persistence.PersistenceManager"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="gate.util.GateException"/>
+<fullyQualifiedTypeName name="gate.util.Out"/>
+<fullyQualifiedTypeName name="gate.Corpus"/>
+<fullyQualifiedTypeName name="gate.Factory"/>
+<fullyQualifiedTypeName name="java.net.URL"/>
+<fullyQualifiedTypeName name="gate.FeatureMap"/>
+<fullyQualifiedTypeName name="gate.Document"/>
+<fullyQualifiedTypeName name="gate.creole.ConditionalSerialAnalyserController"/>
+<fullyQualifiedTypeName name="gate.creole.SerialAnalyserController"/>
+<fullyQualifiedTypeName name="gate.creole.ANNIEConstants"/>
+<fullyQualifiedTypeName name="java.io.FileWriter"/>
+<fullyQualifiedTypeName name="java.util.Set"/>
+<fullyQualifiedTypeName name="gate.AnnotationSet"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="java.util.Collections"/>
+<fullyQualifiedTypeName name="gate.annotation.AnnotationImpl"/>
+<fullyQualifiedTypeName name="gate.Controller"/>
+<fullyQualifiedTypeName name="gate.CorpusController"/>
+<fullyQualifiedTypeName name="org.apache.log4j.Logger"/>
+<fullyQualifiedTypeName name="java.util.Iterator"/>
+<fullyQualifiedTypeName name="eshore.cn.it.gate.GateStart"/>
+</qualifiedTypeNameHistroy>
