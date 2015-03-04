@@ -5,13 +5,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
-import java.util.List;
+import java.util.Set;
 
-import org.apache.log4j.Logger;
-
+import eshore.cn.it.gate.StandAloneAnnie.SortedAnnotationList;
+import gate.Annotation;
 import gate.AnnotationSet;
 import gate.Corpus;
 import gate.CorpusController;
@@ -19,7 +18,7 @@ import gate.Document;
 import gate.Factory;
 import gate.FeatureMap;
 import gate.Gate;
-import gate.annotation.AnnotationImpl;
+import gate.GateConstants;
 import gate.creole.ANNIEConstants;
 import gate.creole.ConditionalSerialAnalyserController;
 import gate.creole.ResourceInstantiationException;
@@ -36,11 +35,6 @@ import gate.util.persistence.PersistenceManager;
  * @since    JDK1.8
  * */
 public class GateStart {
-	private static Logger logger = 
-			Logger.getLogger(GateStart.class.getName());
-	
-	//指定GATE安装目录
-	private String gateHome = "F:\\java\\GATE_Developer_8.0";
 	//指定注册的plugin名字
 	private String pluginName = "Lang_Chinese";
 	//指定使用的资源类名
@@ -55,6 +49,7 @@ public class GateStart {
 	private CorpusController controller;
 	private Corpus corpus;
 	
+	private String[] annotationStrings = new String[]{"Date", "Person", "Location"};
 	
 	public static void main(String[] args) throws Exception {
 		GateStart gs = new GateStart();
@@ -66,34 +61,27 @@ public class GateStart {
 	 * 此方法可以执行一个完整的GATE信息抽取流程，最终把词性标注的结果保存
 	 * */
 	public void gateExecute() throws Exception {
-		setGateHome();		//设置GATE安装目录
-		gateInit();			//初始化GATE，加载必要的插件
-		initController();	//初始化Controller
+		GateEnvironment.setGateHome();		//第一步：设置GATE安装目录
+		gateInit();							//第二步：初始化GATE，加载必要的插件
+		initController();					//第三步：初始化Controller
 		
-		corpus = addFileNameCorpus();	//加入语料信息
+		corpus = addFileNameCorpus();		//第四步：加入语料信息
 		
-		controller.setCorpus(corpus);	//提交语料信息
-		controller.execute();			//执行GATE流程
+		controller.setCorpus(corpus);		//第五步：提交语料信息
+		controller.execute();				//第六步：执行GATE流程
 		
-		persistDocuments();				//持久化执行结果
+		persistDocuments();					//第七步：持久化执行结果
 		
+		infoExtract(annotationStrings);		//第八步：信息抽取
 	}
 	
-	/**
-	 * method<code>setGateHome</code>
-	 * 此方法可以设置GATE安装目录环境变量
-	 * */
-	private void setGateHome() {
-		System.setProperty("gate.home", this.gateHome);
-		logger.info("The GATE_HOME directory is:" + (System.getProperties().getProperty("gate.home")));
-	}
-	
+
 	/**
 	 * method<code>gateInit</code>
 	 * 初始化gate，并且加载必要的组件
 	 * */
 	private void gateInit() throws GateException, MalformedURLException {
-		logger.info("...GATE initialise now ");
+		Out.prln("...GATE initialise now ");
 		Gate.init();
 		
 		File gateHome = Gate.getGateHome();
@@ -102,7 +90,7 @@ public class GateStart {
 		//这里需要设定pluginName参数，指定plugin的名字
 		Gate.getCreoleRegister().registerDirectories(new File(pluginsHome, this.pluginName).toURI().toURL());
 		
-		logger.info("...GATE initialised ");
+		Out.prln("...GATE initialised ");
 	}
 	
 	/**
@@ -110,13 +98,13 @@ public class GateStart {
 	 * 初始化控制器,可以初始化成不同的控制器
 	 * */
 	private void initController() throws GateException, IOException {
-		logger.info("Initialising controller...");
+		Out.prln("Initialising controller...");
 		//chnController = (ConditionalSerialAnalyserController) PersistenceManager.loadObjectFromFile(new File(new File(Gate.getPluginsHome(),"Lang_Chinese"), "resources/chinese.gapp"));
 		controller = (ConditionalSerialAnalyserController)
 				PersistenceManager.loadObjectFromFile(new File(new File(
 				Gate.getPluginsHome(), ANNIEConstants.PLUGIN_DIR),
 				ANNIEConstants.DEFAULT_FILE));
-		logger.info("...controller loaded");
+		Out.prln("...controller loaded");
 	} 
 	
 	
@@ -168,27 +156,64 @@ public class GateStart {
 	}
 
 	
+	/**
+	 * method<code>infoExtract</code>
+	 * 信息抽取，方法可以改进为传入想要抽取的Annotation Type数组
+	 * */
+	private void infoExtract(String[] annotationStrings) {
+		Iterator<Document> iter = corpus.iterator();
+		int count = 0;
+		while(iter.hasNext()) {
+		     Document doc = (Document) iter.next();
+		      
+		     AnnotationSet defaultAnnotSet = doc.getAnnotations();
+		      
+		      //加入需要提取的ANNOTATION
+		     Set<String> annotTypesRequired = new HashSet<String>();
+		     for (String anno : annotationStrings)
+		    	 annotTypesRequired.add(anno);
+		      
+		     Set<Annotation> peopleAndPlaces =
+		       new HashSet<Annotation>(defaultAnnotSet.get(annotTypesRequired));
 	
-
-    /**
-     * 此方法为测试方法
-     * */
-//	private void doSometings(Document docs) throws ResourceInstantiationException {
-//		AnnotationSet annSet = docs.getAnnotations();
-//		
-//		String type = "Date";
-//		
-//		AnnotationSet persSet = annSet.get(type);
-//		List persList = new ArrayList(persSet);
-//		Collections.sort(persList , new gate.util.OffsetComparator());
-//		Iterator persIter = persList.iterator();
-//		while(persIter.hasNext()) {
-//			AnnotationImpl impl = (AnnotationImpl)persIter.next();
-//			
-//		}
-//	}
-
+		     FeatureMap features = doc.getFeatures();
+		     String originalContent = (String)
+		       features.get(GateConstants.ORIGINAL_DOCUMENT_CONTENT_FEATURE_NAME);
+		     ++count;
+		     Out.prln("Begin Extract the "+ count + " file, it's name + " + doc.getName());
+		      
+		     if(originalContent != null) {
+		       Out.prln("OrigContent. Extract file...");
 	
+		       Iterator<Annotation> it = peopleAndPlaces.iterator();
+		       Annotation currAnnot;
+		       SortedAnnotationList sortedAnnotations = new SortedAnnotationList();
 	
+		       while(it.hasNext()) {
+		         currAnnot = (Annotation) it.next();
+		         sortedAnnotations.addSortedExclusive(currAnnot);
+		       }
 	
+		       StringBuffer editableContent = new StringBuffer(originalContent);
+		       long insertPositionEnd;
+		       long insertPositionStart;
+		        
+		       Out.prln("Unsorted annotations count: "+peopleAndPlaces.size());
+		       Out.prln("Sorted annotations count: "+sortedAnnotations.size());
+		        
+		       for(int i=sortedAnnotations.size()-1; i>=0; --i) {
+		         currAnnot = (Annotation) sortedAnnotations.get(i);
+		         insertPositionStart =
+		           currAnnot.getStartNode().getOffset().longValue();
+		          
+		         insertPositionEnd = currAnnot.getEndNode().getOffset().longValue();
+		          
+		         if(insertPositionEnd != -1 && insertPositionStart != -1) {
+		        	 Out.prln(currAnnot.getType() + " : " + editableContent.substring((int)insertPositionStart, (int)insertPositionEnd));
+		         } 
+		       } 
+		     } 
+		   }
+		
+	}
 }
