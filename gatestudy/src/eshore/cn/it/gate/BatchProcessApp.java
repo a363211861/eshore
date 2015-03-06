@@ -14,37 +14,48 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
-
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.BufferedOutputStream;
 import java.io.OutputStreamWriter;
 
 /**
- * This class ilustrates how to do simple batch processing with GATE.  It loads
- * an application from a .gapp file (created using "Save application state" in
- * the GATE GUI), and runs the contained application over one or more files.
- * The results are written out to XML files, either in GateXML format (all
- * annotation sets preserved, as in "save as XML" in the GUI), or with inline
- * XML tags taken from the default annotation set (as in "save preserving
- * format").  In this example, the output file names are simply the input file
- * names with ".out.xml" appended.
- *
- * To keep the example simple, we do not do any exception handling - any error
- * will cause the process to abort.
+ * 这个类说明如何使用GATE实现简单到信息提取.  它通过从 .gapp 文件中加载一个 GATE 应用
+ * （注意：这个文件是通过GATE的图形用户界面 "Save application state" 按钮生成的）, 
+ * 然后在多个文件上面执行这个应用程序。
+ * 最终结果会写成 XML 文件，在这个例子里面，保存的文件命名就是通过输入文件名称后面加".out.xml"。
+ * 为了保持程序捷径，本程序未做任何异常处理。
+ * @author  clebeg
+ * @version 0.0.1
  */
 public class BatchProcessApp {
-
+    /** 在命令行中第一个没有选项的索引	*/
+	private static int firstFile = 0;
+	
+	/** .gapp 的保存路径*/
+	private static File gappFile = null;
+	
+	/** 
+	 * 需要写出的Annotation type，如果没有指定，那么什么都写出到
+	 * GateXML.
+	 */
+	private static List annotTypesToWrite = null;
+	
+	/**
+	 * 文档加载的编码类型，如果没有使用平台默认编码。
+	 */
+	private static String encoding = null;
+	
   /**
-   * The main entry point.  First we parse the command line options (see
-   * usage() method for details), then we take all remaining command line
-   * parameters to be file names to process.  Each file is loaded, processed
-   * using the application and the results written to the output file
-   * (inputFile.out.xml).
+   * main方法是程序的入口。 首先我们解析命令行选项（详细信息请查看usage方法），
+   * 然后把所有其他命令行参数作为文件名进行处理。每个文件通过指定的应用程序加载、处理，
+   * 最终结果保存为 (inputFile.out.xml).
    */
   public static void main(String[] args) throws Exception {
     parseCommandLine(args);
 
+    GateEnvironment.setGateHome();		
+    
     // initialise GATE - this must be done before calling any GATE APIs
     Gate.init();
 
@@ -202,22 +213,6 @@ public class BatchProcessApp {
     System.exit(1);
   }
 
-  /** Index of the first non-option argument on the command line. */
-  private static int firstFile = 0;
-
-  /** Path to the saved application file. */
-  private static File gappFile = null;
-
-  /** 
-   * List of annotation types to write out.  If null, write everything as
-   * GateXML.
-   */
-  private static List annotTypesToWrite = null;
-
-  /**
-   * The character encoding to use when loading the docments.  If null, the
-   * platform default encoding is used.
-   */
-  private static String encoding = null;
+ 
 }
  
