@@ -55,7 +55,7 @@ public class NlpirTest {
 			return;
 		}
 
-		String sInput = "据悉，质检总局已将最新有关情况再次通报美方，要求美方加强对输华玉米的产地来源、运输及仓储等环节的管控措施，有效避免输华玉米被未经我国农业部安全评估并批准的转基因品系污染。";
+		String sInput = "习近平在北京让战士们过一个欢乐祥和的新春佳节。";
 
 		//String nativeBytes = null;
 		try {

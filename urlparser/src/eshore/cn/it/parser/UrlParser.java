@@ -207,10 +207,11 @@ public class UrlParser {
 			Iterator<Entry<String, Set<String>>> it = es.iterator();
 			while(it.hasNext()) {
 				Entry<String, Set<String>> textLink = it.next();
-				String key = textLink.getKey();
+				String key = textLink.getKey() + ":";
 				Set<String> values = textLink.getValue();
 				for (String str : values)
-					key += "," + str;
+					key += str + ",";
+				key = key.substring(0, key.length() - 1);
 				key += System.lineSeparator();
 				System.out.println(key);
 				writer.write(key);
