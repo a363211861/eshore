@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="gate.util.persistence.PersistenceManager"/>
-<fullyQualifiedTypeName name="gate.util.GateException"/>
-<fullyQualifiedTypeName name="gate.Corpus"/>
-<fullyQualifiedTypeName name="gate.Document"/>
-<fullyQualifiedTypeName name="gate.creole.ConditionalSerialAnalyserController"/>
-<fullyQualifiedTypeName name="gate.creole.SerialAnalyserController"/>
-<fullyQualifiedTypeName name="gate.creole.ANNIEConstants"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="java.util.Collections"/>
-<fullyQualifiedTypeName name="gate.annotation.AnnotationImpl"/>
 <fullyQualifiedTypeName name="gate.Controller"/>
 <fullyQualifiedTypeName name="gate.CorpusController"/>
 <fullyQualifiedTypeName name="org.apache.log4j.Logger"/>
@@ -17,7 +7,6 @@
 <fullyQualifiedTypeName name="eshore.cn.it.gate.GateStart"/>
 <fullyQualifiedTypeName name="eshore.cn.it.gate.GateEnvironment"/>
 <fullyQualifiedTypeName name="gate.util.Out"/>
-<fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="org.jsoup.nodes.Document"/>
 <fullyQualifiedTypeName name="org.jsoup.Jsoup"/>
 <fullyQualifiedTypeName name="org.jsoup.nodes.Element"/>
@@ -26,7 +15,6 @@
 <fullyQualifiedTypeName name="java.util.Set"/>
 <fullyQualifiedTypeName name="java.util.HashSet"/>
 <fullyQualifiedTypeName name="junit.framework.Assert"/>
-<fullyQualifiedTypeName name="java.io.File"/>
 <fullyQualifiedTypeName name="java.io.FileWriter"/>
 <fullyQualifiedTypeName name="java.io.Writer"/>
 <fullyQualifiedTypeName name="gate.Gate"/>
@@ -51,8 +39,25 @@
 <fullyQualifiedTypeName name="gate.creole.metadata.Optional"/>
 <fullyQualifiedTypeName name="gate.creole.metadata.RunTime"/>
 <fullyQualifiedTypeName name="gate.creole.metadata.CreoleResource"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="org.ansj.domain.Term"/>
 <fullyQualifiedTypeName name="org.ansj.splitWord.analysis.BaseAnalysis"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="java.io.Reader"/>
+<fullyQualifiedTypeName name="org.ansj.splitWord.analysis.ToAnalysis"/>
+<fullyQualifiedTypeName name="org.apache.commons.io.IOUtils"/>
+<fullyQualifiedTypeName name="java.io.File"/>
+<fullyQualifiedTypeName name="java.io.FileReader"/>
+<fullyQualifiedTypeName name="java.util.LinkedHashMap"/>
+<fullyQualifiedTypeName name="java.util.Collections"/>
+<fullyQualifiedTypeName name="java.util.Collection"/>
+<fullyQualifiedTypeName name="eshore.cn.it.data.DataFilter"/>
+<fullyQualifiedTypeName name="eshore.cn.it.data.SiteMap"/>
+<fullyQualifiedTypeName name="eshore.cn.it.parser.UrlParser"/>
+<fullyQualifiedTypeName name="eshore.cn.it.data.DataWriter"/>
+<fullyQualifiedTypeName name="eshore.cn.it.data.DataLoader"/>
+<fullyQualifiedTypeName name="java.util.regex.Matcher"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="pri.clebeg.machine_learning.DicisionTreeNode"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
 </qualifiedTypeNameHistroy>

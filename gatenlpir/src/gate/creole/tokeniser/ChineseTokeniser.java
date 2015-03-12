@@ -116,7 +116,7 @@ public class ChineseTokeniser extends AbstractLanguageAnalyser {
 		          SetSplitFeatures(paragramlengh,paragram);
 		          paragramlengh += paragram.length() + paragramflagLength;
 		      }
-	    }catch(Exception rie) {
+	    } catch(Exception rie) {
 	    	throw new ExecutionException(rie);
 	    }
 	

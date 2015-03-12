@@ -42,7 +42,7 @@
 		<item value="587" key="DIALOG_WIDTH"/>
 		<item value="1|微软雅黑|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|微软雅黑" key="DIALOG_FONT_NAME"/>
 		<item value="760" key="DIALOG_HEIGHT"/>
-		<item value="355" key="DIALOG_X_ORIGIN"/>
+		<item value="187" key="DIALOG_X_ORIGIN"/>
 		<item value="8" key="DIALOG_Y_ORIGIN"/>
 	</section>
 	<section name="org.eclipse.jdt.internal.ui.dialogs.OpenTypeSelectionDialog2">
@@ -76,7 +76,7 @@
 		<item value="0" key="index"/>
 	</section>
 	<section name="BuildPathsPropertyPage">
-		<item value="3" key="pageIndex"/>
+		<item value="2" key="pageIndex"/>
 	</section>
 	<section name="quick_assist_proposal_size">
 	</section>
@@ -109,6 +109,7 @@
 		<item value="false" key="JarManifestWizardPage.SAVE_MANIFEST"/>
 		<item value="false" key="JarPackageWizardPage.EXPORT_OUTPUT_FOLDER"/>
 		<list key="JarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="F:\java\GATE_Developer_8.0\plugins\AnsjChineseTokeniser\AnsjForGate.jar"/>
 			<item value="F:\java\GATE_Developer_8.0\plugins\Chinese_Tokeniser\CLlibrary.jar"/>
 			<item value="F:\java\GATE_Developer_8.0\plugins\Chinese_Tokeniser\chinesetokeniser.jar"/>
 		</list>
