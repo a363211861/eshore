@@ -127,7 +127,6 @@ public class UrlParser {
 	 * method<code>parseTextKeyWords</code>
 	 * 遍历所有的锚文本为key链接为values的map
 	 * 按照特定的算法提取链接中的关键词
-	 * @param url 原始页面的url
 	 */
 	private void parseTextKeyWords() {
 											
