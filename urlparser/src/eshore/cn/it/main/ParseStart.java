@@ -14,9 +14,14 @@ public class ParseStart {
 	public static void main(String[] args) {
 		UrlParser parser = new UrlParser();
 		List<SiteMap> sms = DataLoader.loadSiteMaps();
-		for (SiteMap sm : sms)
-			parser.parseExecute(sm.getUrl(), sm.getSelectStr());
-		DataWriter.writeCSVTextKeyWords(DATADIR, KEYWORDSFILENAME, parser.getTextKeyWords());
+		for (SiteMap sm : sms) {
+			System.out.println("Begin to process: " + sm + " ...");
+			parser.parseExecute(sm);
+			DataLoader.MAX_DONE_ID++;
+			System.out.println("Process " + sm + " Done.");
+		}
+		DataWriter.writeCSVTextKeyWords(DATADIR, KEYWORDSFILENAME, parser.getTextLinks());
+		DataWriter.writeMaxDoneId(DataLoader.MAX_DONE_ID);
 	}
 
 }

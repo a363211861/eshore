@@ -1,12 +1,16 @@
 package eshore.cn.it.data;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
+
+import org.apache.commons.io.IOUtils;
 
 public class DataWriter {
 	/**
@@ -15,7 +19,7 @@ public class DataWriter {
 	 * 这个方法可以提取作为持久层组件
 	 * @param url 
 	 */
-	public static void writeCSVTextKeyWords(String dataDir, String url, Map<String, Set<String>> textKeyWords) {
+	public static void writeCSVTextKeyWords(String dataDir, String url, Map<String, Set<KeyWord>> textKeyWords) {
 //		URL u = null;
 //		try {
 //			u = new URL(url);
@@ -27,19 +31,19 @@ public class DataWriter {
 		FileWriter writer = null;
 		try {
 			writer = new FileWriter(dataFile, true);
-			Set<Entry<String, Set<String>>> es = textKeyWords.entrySet();
-			Iterator<Entry<String, Set<String>>> it = es.iterator();
+			Set<Entry<String, Set<KeyWord>>> es = textKeyWords.entrySet();
+			Iterator<Entry<String, Set<KeyWord>>> it = es.iterator();
 			while(it.hasNext()) {
-				Entry<String, Set<String>> textLink = it.next();
-				Set<String> values = textLink.getValue();
+				Entry<String, Set<KeyWord>> textLink = it.next();
+				Set<KeyWord> values = textLink.getValue();
 				if (values != null && values.size() > 0) {
-					String key = textLink.getKey() + ":";
-					for (String str : values)
-						key += str + ",";
-					key = key.substring(0, key.length() - 1);
-					key += System.lineSeparator();
-					System.out.println(key);
-					writer.write(key);
+					String key = System.lineSeparator();
+					for (KeyWord str : values) {
+						key = str.toString();
+						key += System.lineSeparator();
+						//System.out.println(key);
+						writer.write(key);
+					}
 				}
 			}
 		} catch (IOException e) {
@@ -52,5 +56,34 @@ public class DataWriter {
 				e.printStackTrace();
 			}
 		}	
+	}
+
+	public static String getMaxKeyWordsId(String dataDir, String fileName) {
+		File dataFile = new File(dataDir, fileName);
+		FileReader reader = null;
+		try {
+			reader = new FileReader(dataFile);
+			List<String> lines = IOUtils.readLines(reader);
+			return "" + (lines.size() - 1);
+		} catch (IOException e) {
+			System.exit(1);
+			e.printStackTrace();
+		} finally {
+			IOUtils.closeQuietly(reader);
+		}
+		return null;
+	}
+
+	public static void writeMaxDoneId(int MAX_DONE_ID) {
+		File file = new File("resource", "MAXDONEID");
+		FileWriter writer = null;
+		try {
+			writer = new FileWriter(file);
+			writer.write("" + MAX_DONE_ID);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			IOUtils.closeQuietly(writer);
+		}
 	}
 }

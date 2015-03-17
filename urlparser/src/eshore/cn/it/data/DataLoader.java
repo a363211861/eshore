@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.io.IOUtils;
 
@@ -28,30 +30,44 @@ public class DataLoader {
 	
 	private static List<SiteMap> siteMaps = null;
 	private static List<String> filterWords = null;
-	
+	private static Map<String, KeyWord> keyWords = null;
+	public static int MAX_DONE_ID = -1;
 	public static List<SiteMap> loadSiteMaps() {
 		if (siteMaps == null) {
 			siteMaps = new ArrayList<SiteMap>();
 			File file = new File("resource", siteMapsFileName);
+			FileReader reader = null;
 			try {
-				List<String> lines = IOUtils.readLines(new FileReader(file));
-				for (int i = 0; i < lines.size(); i+=2) {
+				reader = new FileReader(file);
+				List<String> lines = IOUtils.readLines(reader);
+				if (lines.size() <= DataLoader.getMaxDoneId()) {
+					System.err.println("没有网站需要处理，请添加按照要求添加网站。");
+					System.exit(1);
+				}
+				for (int i = DataLoader.getMaxDoneId(); i < lines.size(); i++) {
 					SiteMap sm = new SiteMap();
 					String line = lines.get(i).trim();
 					if (line.startsWith(commentPattern))
-						sm.setComment(line.substring(1));
-					line = lines.get(i + 1).trim();
-					String[] tmps = line.split("\\|");
-					if(tmps.length != 2)
-						System.err.println("文件格式书写错误，必须一行注释一行数据，数据格式为：url|selectStr");
+						continue;
+					line = lines.get(i).trim();
+					String[] tmps = line.split(",");
+					if(tmps.length != 5) {
+						System.err.println("文件格式书写错误，请按照要求填写所有属性，所有属性不能为空。");
+						System.exit(1);
+					}
 					else {
-						sm.setUrl(tmps[0]);
-						sm.setSelectStr(tmps[1]);
+						sm.setId(tmps[0]);
+						sm.setSiteName(tmps[1]);
+						sm.setIndexUrl(tmps[2]);
+						sm.setNavigateUrl(tmps[3]);
+						sm.setSelectStr(tmps[4]);
 					}
 					siteMaps.add(sm);
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
+			} finally {
+				IOUtils.closeQuietly(reader);
 			}
 		}
 		return siteMaps;
@@ -61,22 +77,85 @@ public class DataLoader {
 		if(filterWords == null) {
 			filterWords = new ArrayList<String>();
 			File file = new File("resource", filterWordsFileName);
+			FileReader reader = null;
 			try {
-				List<String> lines = IOUtils.readLines(new FileReader(file));
+				reader = new FileReader(file);
+				List<String> lines = IOUtils.readLines(reader);
 				for (int i = 0; i < lines.size(); i++) {
 					filterWords.add(lines.get(i).trim());
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
+			} finally {
+				IOUtils.closeQuietly(reader);
 			}
 		}
 		return filterWords;
 	}
 	
+	public static Map<String, KeyWord> loadKeyWords() {
+		if (keyWords == null) {
+			keyWords = new LinkedHashMap<String, KeyWord>();
+			File file = new File("data", "keywords.txt");
+			FileReader reader = null;
+			try {
+				reader = new FileReader(file);
+				List<String> lines = IOUtils.readLines(reader);
+				if (lines.size() <= 1) {
+					System.err.println("没有关键词信息！");
+					System.exit(1);
+				}
+				for (int i = 1; i < lines.size(); i++) {
+					KeyWord sm = new KeyWord();
+					String line = lines.get(i).trim();
+					if (line.startsWith(commentPattern))
+						continue;
+					line = lines.get(i).trim();
+					String[] tmps = line.split(",");
+					if(tmps.length != 6) {
+						System.err.println("文件格式书写错误，请按照要求填写所有属性，所有属性不能为空。");
+						System.exit(1);
+					}
+					else {
+						//1,-1,http://www.sina.com.cn/,www.sina.com.cn,,新浪网
+						sm.setId(tmps[0]);
+						sm.setPid(tmps[1]);
+						sm.setUrl(tmps[2]);
+						sm.setHost(tmps[3]);
+						sm.setKeywords(tmps[4]);
+						sm.setLabel(tmps[5]);
+					}
+					keyWords.put(sm.getId(), sm);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				IOUtils.closeQuietly(reader);
+			}
+		}
+		return keyWords;
+	}
 	
 	public static void main(String[] args) {
 		System.out.println(DataLoader.loadSiteMaps());
 		System.out.println(DataLoader.loadFilterWords());
 		System.out.println(DataFilter.stopWordFilter("hello", DataLoader.loadFilterWords()));
+	}
+
+	public static int getMaxDoneId() {
+		if (MAX_DONE_ID == -1) {
+			File file = new File("resource", "MAXDONEID");
+			FileReader reader = null;
+			try {
+				reader = new FileReader(file);
+				List<String> lines = IOUtils.readLines(reader);
+				MAX_DONE_ID = Integer.parseInt(lines.get(0).trim());
+			} catch (IOException e) {
+				e.printStackTrace();
+			} finally {
+				IOUtils.closeQuietly(reader);
+			}
+		}
+		return MAX_DONE_ID;
 	}
 }

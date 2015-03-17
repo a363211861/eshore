@@ -1,33 +1,82 @@
 package eshore.cn.it.data;
 
-public class SiteMap {
-	//注释信息
-	private String comment;
-	//网站地址
-	private String url;
-	//需要提取信息的选择条件
+import java.io.Serializable;
+
+public class SiteMap implements Serializable{
+	private static final long serialVersionUID = 71314950422298380L;
+	private String id;
+	//网站名称
+	private String siteName;
+	//网站主页地址
+	private String indexUrl;
+	//网站导航地址
+	private String navigateUrl;
+	//分类信息选择器
 	private String selectStr;
+
 	
-	
-	public String getComment() {
-		return comment;
+
+	public String getId() {
+		return id;
 	}
-	public void setComment(String comment) {
-		this.comment = comment;
+
+
+
+	public void setId(String id) {
+		this.id = id;
 	}
-	public String getUrl() {
-		return url;
+
+
+
+	public String getSiteName() {
+		return siteName;
 	}
-	public void setUrl(String url) {
-		this.url = url;
+
+
+
+	public void setSiteName(String siteName) {
+		this.siteName = siteName;
 	}
+
+
+
+	public String getIndexUrl() {
+		return indexUrl;
+	}
+
+
+
+	public void setIndexUrl(String indexUrl) {
+		this.indexUrl = indexUrl;
+	}
+
+
+
+	public String getNavigateUrl() {
+		return navigateUrl;
+	}
+
+
+
+	public void setNavigateUrl(String navigateUrl) {
+		this.navigateUrl = navigateUrl;
+	}
+
+
+
 	public String getSelectStr() {
 		return selectStr;
 	}
+
+
+
 	public void setSelectStr(String selectStr) {
 		this.selectStr = selectStr;
 	}
+
+
+
 	public String toString() {
-		return this.comment + " : " + url + " -> " + this.selectStr;
+		return this.siteName + " : " + navigateUrl + " -> " + this.selectStr;
 	}
 }

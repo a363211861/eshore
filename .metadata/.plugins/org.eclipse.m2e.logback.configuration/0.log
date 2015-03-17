@@ -1046,3 +1046,27 @@ org.eclipse.core.runtime.CoreException: Launch configuration Test references non
 2015-03-13 09:42:07,370 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 23 resources
 2015-03-13 09:42:08,758 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2015-03-13 09:42:08,758 [Worker-9] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\java_git_projects\ansj_seg\src\test\resources
+2015-03-17 08:43:38,769 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-03-17 08:43:38,832 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 23 resources
+2015-03-17 08:43:38,918 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-03-17 08:43:38,918 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\java_git_projects\ansj_seg\src\test\resources
+2015-03-17 08:43:40,191 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-03-17 08:43:40,191 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\java_git_projects\fnlp\fnlp-core\src\main\resources
+2015-03-17 08:43:40,194 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-03-17 08:43:40,195 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\java_git_projects\fnlp\fnlp-core\src\test\resources
+2015-03-17 08:43:41,049 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-03-17 08:43:41,050 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\java_git_projects\fnlp\fnlp-app\src\main\resources
+2015-03-17 08:43:41,052 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-03-17 08:43:41,052 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\java_git_projects\fnlp\fnlp-app\src\test\resources
+2015-03-17 08:43:41,370 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-03-17 08:43:41,371 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\java_git_projects\fnlp\fnlp-demo\src\main\resources
+2015-03-17 08:43:41,373 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-03-17 08:43:41,373 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\java_git_projects\fnlp\fnlp-demo\src\test\resources
+2015-03-17 08:43:41,619 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-03-17 08:43:41,619 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\java_git_projects\fnlp\fnlp-dev\src\main\resources
+2015-03-17 08:43:41,621 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-03-17 08:43:41,621 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\java_git_projects\fnlp\fnlp-dev\src\test\resources
+2015-03-17 08:43:41,798 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-03-17 08:43:41,798 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\java_git_projects\fnlp\fnlp-train\src\main\resources
+2015-03-17 08:43:41,800 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2015-03-17 08:43:41,800 [Worker-2] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory F:\java_git_projects\fnlp\fnlp-train\src\test\resources
