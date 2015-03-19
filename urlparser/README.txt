@@ -1,4 +1,5 @@
-urlparser 
+urlparser
+请注意：配置文件在resource目录中，结果保存在data目录中，相关说明在doc目录中 
 一、工程简介
 说明：urlparser 目的是通过整合所有需求网址网站导航的分类信息。
 例如新浪网：http://www.sina.com.cn/ 它的导航页是：http://news.sina.com.cn/guide/

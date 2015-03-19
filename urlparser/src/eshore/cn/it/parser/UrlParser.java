@@ -161,7 +161,7 @@ public class UrlParser {
 				//将在对应路径信息中将所有的关键词分解
 				String[] strs = u.getPath().split("[./]");
 				for (int i = 0; i < strs.length; i++) {
-					String tmp = filterAdd(strs[i].trim());
+					String tmp = ParseUtil.filterAdd(strs[i].trim());
 					if (tmp != null)
 						keyWords += tmp + "|";
 				}
@@ -175,28 +175,8 @@ public class UrlParser {
 		}
 	}
 
-	private String filterAdd(String t) {
-		if(t == null || t.equalsIgnoreCase("") || hasDigit(t) ||
-			DataFilter.stopWordFilter(t, DataLoader.loadFilterWords()) )
-			return null;
-		return t;
-	}
-	/**
-	 * method<code>hasDigit</code>
-	 * 判断是否为含有数字
-	 * @param str 传入的字符串  
-	 * @return 是整数返回true,否则返回false  
-	 */    
-	public boolean hasDigit(String content) {
-		boolean flag = false;
-		Pattern p = Pattern.compile(".*\\d+.*");
-		Matcher m = p.matcher(content);
-		if (m.matches())
-			flag = true;
-		return flag;
-	}
-
-
+	
+	
 	public Map<String, Set<KeyWord>> getTextLinks() {
 		return textLinks;
 	}
